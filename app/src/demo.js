@@ -79,8 +79,6 @@ export function makePortraitDemo() {
   ctx.fillStyle = 'rgba(43,16,85,0.55)';
   const blocks = [[0, 640, 120, 260], [120, 700, 90, 200], [700, 660, 110, 240], [810, 720, 90, 180]];
   for (const [x, y, w, h] of blocks) ctx.fillRect(x, y, w, h);
-  palm(ctx, 60, H * 0.62, 1.1, '#1c0b2e');
-  palm(ctx, W - 40, H * 0.58, 0.9, '#220d33');
 
   // Sea band.
   ctx.fillStyle = '#7a2d6e';
@@ -195,13 +193,13 @@ export function makeBeachDemo() {
     ctx.fillRect(W / 2 - wdt / 2, y, wdt, 5);
   }
 
-  // Sand + palms.
+  // Sand + one large palm, fully inside the frame so it reads as a palm
+  // even when the picture is cropped into a narrow panel.
   ctx.fillStyle = '#e8b06a';
   ctx.fillRect(0, H * 0.82, W, H * 0.18);
   ctx.fillStyle = 'rgba(122,45,110,0.35)';
   ctx.fillRect(0, H * 0.82, W, 8);
-  palm(ctx, 130, H * 0.86, 1.35, '#2a1240');
-  palm(ctx, W - 120, H * 0.88, 1.15, '#2a1240');
+  palm(ctx, 185, H * 0.90, 1.7, '#2a1240');
   // Beach umbrella.
   ctx.fillStyle = '#ff4da6';
   ctx.beginPath();
@@ -278,8 +276,6 @@ export function makeNeonDemo() {
     ctx.fillRect(rx, H * 0.82 + (i % 5) * 26, 60 + (i % 4) * 22, 4);
   }
   ctx.globalAlpha = 1;
-  // Palm silhouette against the neon.
-  palm(ctx, W - 60, H * 0.82, 0.85, '#05030c');
   return c;
 }
 
