@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Studio — GTA-style cover art maker</title>
+<meta name="description" content="Turn any photo and caption into GTA-style multi-panel cover art, offline in your browser. Photos never leave your machine.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:,">
+<link rel="preload" href="fonts/Anton-Regular.ttf" as="font" type="font/ttf" crossorigin>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">VC</span>
+    <div>
+      <h1>VICE COVER STUDIO</h1>
+      <p class="tagline">Any photo. One caption. Poster-grade cover art — offline, in your browser.</p>
+    </div>
+  </div>
+  <p class="privacy">100% offline — your photos never leave this machine.</p>
+</header>
+
+<main class="layout">
+  <aside class="controls" aria-label="Cover editor controls">
+    <section class="card">
+      <h2>1 · Photos</h2>
+      <p class="hint">Three demo pictures are loaded already. Add your own (up to 5 in the library).</p>
+      <div id="dropzone" class="dropzone" role="button" tabindex="0">
+        <span class="drop-big">Drop photos here</span>
+        <span class="drop-small">or click to choose from your machine</span>
+        <input id="file-input" type="file" accept="image/*" multiple hidden>
+      </div>
+      <div id="photo-thumbs" class="thumbs"></div>
+      <p id="photo-count" class="hint"></p>
+    </section>
+
+    <section class="card">
+      <h2>2 · Layout</h2>
+      <div id="layout-buttons" class="choices"></div>
+    </section>
+
+    <section class="card">
+      <h2>3 · Colour grade</h2>
+      <div id="grade-buttons" class="choices"></div>
+    </section>
+
+    <section class="card">
+      <h2>4 · Caption</h2>
+      <label class="field">
+        <span>Title</span>
+        <input id="title-input" type="text" maxlength="24" autocomplete="off" spellcheck="false">
+      </label>
+      <label class="field">
+        <span>Sub-caption</span>
+        <input id="subtitle-input" type="text" maxlength="48" autocomplete="off" spellcheck="false">
+      </label>
+      <div class="choices two">
+        <button id="caption-top" type="button" class="choice">Title on top</button>
+        <button id="caption-bottom" type="button" class="choice">Title at bottom</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>5 · Poster treatment</h2>
+      <label class="check"><input id="fx-outline" type="checkbox" checked> <span>Ink outlines (comic edges)</span></label>
+      <label class="check"><input id="fx-halftone" type="checkbox" checked> <span>Halftone dots in the shadows</span></label>
+      <label class="check"><input id="fx-grain" type="checkbox" checked> <span>Film grain + vignette</span></label>
+    </section>
+
+    <section class="card">
+      <h2>Selected panel</h2>
+      <p id="panel-label" class="hint">Panel 1</p>
+      <label class="field">
+        <span>Zoom <b id="zoom-value">1.0×</b></span>
+        <input id="zoom-slider" type="range" min="1" max="4" step="0.05" value="1">
+      </label>
+      <p class="hint">Tip: drag the photo inside the preview to move it, scroll to zoom. Click a panel to select it.</p>
+      <div class="choices two">
+        <button id="fill-all" type="button" class="choice">Fill all panels with this photo</button>
+        <button id="reset-panel" type="button" class="choice">Reset panel crop</button>
+      </div>
+    </section>
+
+    <section class="card export-card">
+      <h2>6 · Export PNG</h2>
+      <p class="hint">Preview size:</p>
+      <div id="size-buttons" class="choices three"></div>
+      <div id="export-buttons" class="export-list"></div>
+      <button id="export-all" type="button" class="export-all">Export all three sizes</button>
+      <p class="hint">PNG, ready to post. No watermark, no upload.</p>
+    </section>
+  </aside>
+
+  <section class="stage" aria-label="Live cover preview">
+    <div class="stage-head">
+      <span class="live-dot"></span><span>Live preview — exactly what the PNG looks like</span>
+    </div>
+    <canvas id="preview" width="960" height="540"></canvas>
+    <p class="stage-hint">Click a panel to select it · drag to move its photo · scroll to zoom</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Vice Cover Studio — an original cover maker. Display type: Anton (SIL Open Font License). Demo pictures are drawn by the app itself; no real people, no game artwork, no logos.</p>
+</footer>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
